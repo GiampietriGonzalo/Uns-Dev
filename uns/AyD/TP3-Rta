@@ -1,0 +1,33 @@
++UserLogic no cumple con Single Responsability principle, se debe partir.
+
+UserLogic
+public boolean addUser(User user)
+
+private String createUrl()
+
+
+CreateUserResult
+
+private boolean isResultOk
+
+
+UrlUserCreator (INTERFAZ agregada)
+public String createUserUrl(User user)
+
+UrlUserCreateronImpementation  
+
+ServiceConfig (Clase estática agregada)
+Clase estática con las variables estáticas de las URLs
+
+
+CreateUserService
+private String callUserService(String addUserUrl)
+private CreateUserResult createUserResult
+
+
+
+
++En su forma original"", se cumple el Dependecy Inversion principle; las clases de 
+negocios no deberían tener interfaces (no pasarse de rosca).
+
+serviceName

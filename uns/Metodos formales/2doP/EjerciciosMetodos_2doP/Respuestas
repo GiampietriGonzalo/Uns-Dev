@@ -1,0 +1,3 @@
+INCISO B
+
+Las pruebas abiertas determinan que al cambiar de tamaño un envase de helado, se viola la invariante 'chico!=grande'. Además, en los casos donde el envase era grande, es de telgopor y maxSabores=maxSaboresTelgoporGrande, al cambiar de tamaño por un cucurucho, se viola la invariante que establece que maxSabores<=maxSaboresTelgoporGrande.

@@ -1,0 +1,152 @@
+EJERCICIO 1
+
+/*
+  @ public invariant (\forall int i;  j<=i and i<=k ; b[i]==0)
+*/
+
+/*
+  @ public invariant (\forall int i;  j<=i and i<=k and b[i]==0 ; c[i]==0)
+*/
+
+/*
+  @ public invariant (\forall int i; b[i]==0 ; j<=i and i<=k and c[i]==0)
+*/
+
+/*
+  @ public invariant !(\forall int i; b[i]==0;j<=i and i<=k)
+*/
+
+/*
+  @ public invariant (\exists int i,t;  j<=i and i<=k and j<=t and i<=t and i!=t ; b[i]=b[t]=0)
+*/
+
+EJERCICIO 2
+
+public class Lista {
+
+	Object cabeza;
+	Lista cola;
+
+	Lista(Object cabeza, Lista cola) {
+		this.cabeza = cabeza;
+		this.cola = cola;
+	}
+
+	/*
+	@ public normal_behavior
+	@ requires cabeza == null;
+	@ ensures \result == 0;
+	@
+	@ also
+	@
+	@ public normal_behavior
+	@ requires cabeza != null;	
+	@ requires cola != null;				
+	@ ensures \result > 0;
+	@
+	*/
+	int largo() {
+		// ...
+	}
+}
+
+
+EJERCICIO 3
+
+public class Category {
+	
+	private Book[] books;
+	//...
+
+	/*Las categor´ıas son disjuntas, es decir, no poseen libros en com´un*/
+	/*@ public invariant (\forall Book b; !(\exists Category c; c!=this and belongsToCategory(b); c.belongsToCategory(b) )) */
+	
+
+
+	/*
+	@ public normal_behavior
+	@ requires books!=null;
+	@ requires (\exists int i; 0<= i and i<books.lenght ; books[i] == b);
+	@ ensures true;
+	@	
+	@ also
+	@
+	@ public normal_behavior;
+	@ requires books!=null;
+	@ requires !(\exists int i; 0<= i and i<books.lenght ; books[i] == b);
+	@
+	@ also
+	@
+	@ public normal_behavior;
+	@ requires books==null;
+	@ ensures false;
+	@
+	*/
+	public /*@ pure @*/ boolean belongsToCategory(Book b) {
+		// Determina si el libro b pertenece a la categoria (pertenencia a books)
+	}
+
+
+	/*
+	@ public normal_behavior	
+	@ requires books!=null;
+	@ requires (\exists int i; 0<=i and i<books.lenght; books[i]==null)	;
+	@ ensures books.lenght == \old(books.lenght) + 1;	
+	@ ensures belongsToCategory(b);
+	@ ensures b.viewCategory == this;
+	@
+	@ also
+	@
+	@ public normal_behavior
+	@ requires books!=null;
+	@ requires !(\exists int i; 0<=i and i<books.lenght; books[i]==null);
+	@ ensures books.lenght == \old(books.lenght);	
+	@ ensures !belongsToCategory(b);
+	@
+	@ also
+	@
+	@ public normal_behavior
+	@ requires books!=null;
+	@ requires belongsToCategory(b)
+	@ ensures books.lenght == \old(books.lenght);
+	@ ensures b.viewCategory == this;
+	@
+	*/
+	public void addBook(Book b){
+		/*Si el libro b posee la categoría actual, lo añade a la colección de libros.
+		Además, en caso de a~nadirlo, le asocia la categor´ıa actual a b.*/
+	}
+
+}
+
+
+public class Book {
+
+	private Category cat;
+	private Book[] similar;
+	// ...
+
+	/*Un libro b posee la categoría c sí y sólo sí b pertenece al conjunto de libros de
+	la categoría c.*/
+	/*@ public invariant (\forall Category c; cat == c <==> c.belongsToCategory(this)) 
+
+	/*Si dos libros se encuentran en relación de similitud, entonces poseen la misma
+	categoría.*/
+	/*@ public invariant (\forall Book b; b!=this and isSimilar(b); cat == b.viewCategory()) */
+
+	/*Un libro no puede estar en relaci´on de similitud consigo mismo.*/
+	/*@ public invariant !isSimilar(this)	*/
+
+	public Category viewCategory() {
+		// Retorna la categoria del libro
+	}
+
+	public boolean isSimilar(Book b) {
+		// Determina si el libro b es similar al actual
+	}
+
+	public void addCategory(Category c){
+		/*Si el libro actual no tiene categor´ıa, le asocia c.
+		Adem´as, en caso de ´exito, agrega el libro actual al conjunto de libros de c.*/
+	}
+}

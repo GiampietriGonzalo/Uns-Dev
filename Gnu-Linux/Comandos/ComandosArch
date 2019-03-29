@@ -1,0 +1,81 @@
+Comando ArchLinux
+
+Actualizar sistema:	$sudo pacman -Syu
+
+Instalar:	$sudo pacman -S [Paquete]
+
+El comando pacman -Qdtq nos muestra una lista de las dependencias innecesarias. 
+No obstante, hace falta combinarlo con pacman -R para eliminarlas:	$sudo pacman -Rs $(pacman -Qdtq)
+
+Quitar paquete y desinstalar: 	$sudo pacman -Rs [paquete]
+Quitar paquete: 	$sudo pacman -R [paquete]
+Desinstalar Dependencias del paquete: 	$sudo pacman -s [paquete]
+Limpiar caché del sistema de paquetes: 	$sudo pacman -Scc
+
+#Instalar paquetes
+pacman -S “paquete” #Instala un paquete.
+pacman -Sy “paquete” #Sincroniza repositorios e instala el paquete.
+ 
+# Actualizar paquetes
+pacman -Sy #Sincroniza repositorios.
+pacman -Syy #Fuerza la sincronización de repositorios incluso para paquetes que parecen actualizados.
+pacman -Syu #Sincroniza repositorios y actualiza paquetes.
+pacman -Syyu #Fuerza sincronización y actualiza paquetes.
+pacman -Su #Actualiza paquetes sin sincronizar repositorios.
+ 
+# Buscar paquetes
+pacman -Ss “paquete” #Busca un paquete.
+pacman -Si “paquete” #Muestra información detallada de un paquete.
+pacman -Sg “grupo” #Lista los paquetes que pertenecen a un grupo.
+pacman -Qs “paquete” #Busca un paquete YA instalado.
+pacman -Qi “paquete” #Muestra información detallada de un paquete YA instalado.
+pacman -Qdt #Muestra paquetes huerfanos.
+ 
+# Eliminar paquetes
+pacman -R “paquete” #Borra paquete sin sus dependencias.
+pacman -Rs “paquete” #Borra paquete y sus dependencias no utilizadas.
+
+
+
+Crackeo
+
+Ver dispositivos conectados en la red: sudo nmap -sP 192.168.1.0/24
+
+
+Denegacion de servicio:sudo aireplay-ng -0 0 -c 1C:C6:3C:9A:F1:31 -e ayuda wlo1
+
+Descargar Torrent: $transmission-cli [archivo.torrent]
+
+AVERIGUAR pid de un proceso
+ps -ef | grep firefox
+ps -ef | grep "Nombre_Programa"
+
+MATAR PROCESO
+kill -9 pid 
+
+Descargar Video(youtuble-dl):
+	$youtube-dl [link]
+
+Descargar y CONVERTIR A AUDIO con youtube-dl:
+	youtube-dl -x --audio-format "mp3" [URL]
+
+
+
+Convertir video(ffmpeg): 
+
+	$ffmpeg nombreConvertir.mkv NombreConvertido.pm3
+
+Pendrive booteable (dd):
+	$sudo dd if=/home/gonza/tails-i386-2.5.iso of=/dev/sdb (sdb pendrive)
+
+Esuchar música: cmus (f5 para navegar)
+
+
+wifislax
+    1 Wireshark
+    2 Zenmap(Nmap)
+    3 Oswap ZAP
+    4 Armitage
+    5 Suite aircrack-ng
+
+

@@ -1,0 +1,43 @@
+EJERCICIO 5 - AyD TP1
+
+Se viola el principio Interface Segregation, Open/Closed, Dependency Inversion. Solución: Dividir la interface IOad en 2: Una interfaz sólo de lectura y una interfaz sólo de escritura. La clase FacturaOad implementa ambas interfaces. La clase FacturaOadReadOnly implementa solo la interfaz correspondiente a la lectura.
+
+EJERCICIO 6 - AyD TP1
+Se reompe el principio Dependency Inversion, Dependency Inversion. Solución: Pasar sólo los datos necesarios, en este caso el nombre y la dirección de correo
+
+EJERCICO 6 - AyD TP1
+a) i) No se cumple con el principio Dependecy Inversion; la clase Game depende de las clases concretas GunEnemy y KnifeEnemy; debería depende de abstracciones, no de clases conretas
+
+ii) No se cumple con el Open/Closed Principle. Al agregar un nuevo tipo de enemigo al modelo se requiere modificar la clase Game para su contemplación.
+
+
+
+b) SOLUCION
+
+public interface Enemy{
+	public void attack();
+}
+
+public class GunEnemy implements Enemy{
+	public void attack(){
+		//Shoot
+	}
+}
+
+public class KnifeEnemy implements Enemy{
+	public void attack(){
+		//Stab
+	}
+}
+
+public class Game{
+
+	private Array<Enemy> enemies;
+
+	
+	for (Enemy enemy: enemies) {
+		enemy.attack()
+		....
+	}	
+	...
+}

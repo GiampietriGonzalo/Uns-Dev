@@ -1,0 +1,1 @@
+(class=Gnome-panel) & !(type=Menu | PopupMenu | Dialog | DropdownMenu)

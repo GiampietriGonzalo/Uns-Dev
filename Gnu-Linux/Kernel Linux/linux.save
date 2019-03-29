@@ -1,0 +1,95 @@
+en Linux, se puede generalizar que cada procesador de una máquina está haciendo alguna de estas tres cosas en un momento dado:
+*En Kernel space, en "process context", ejecutando en nombre de algún proceso.
+*En Kernel spacem en "interrupt context", manejando una interrupción
+*EN user space, ejecutando código de un proceso de usuario.
+
+El manejador de interrupciones no debe bloquearse nunca. Las operaciones largas y no críticas deberían ser diferidas ya que mientras el manejador se está ejecutando, las señales en la línea IRQ correspondiente son temporalmente ignoradas.
+Linux implementa esto usando dos tipos de funciones diferibles ("bottom hakves") del kernel:
+
+	*softirqs
+	*tasklets
+
+
+
+
+OBS:
+	*Scheduler:El planificador (en inglés scheduler) es un componente funcional muy importante de los sistemas operativos multitarea y multiproceso, y es esencial en los sistemas operativos de tiempo real. Su función consiste en repartir el tiempo disponible de un microprocesador entre todos los procesos que están disponibles para su ejecución.
+
+
+Existen dos grandes clasificaciones de kernels con respecto a su diseño: 
+
+	*kernels monolíticos 
+	*microkernels
+	*Otras categorías, nanokernels, exokernels, etc,  se mencionan principalmente en entornos de investigación.
+
+Kernels monolíticos: Se imlementan en forma de un gran programa corriendo en un único espacio de direccionamiento.
+Todo corre dentro del kernel space. Simplicidad y performance como principales ventajas.
+La mayoría de los kernel UNIX son monolíticos.
+
+MicroKernels: La funcionalidad del Kernel está distribuida entre procesos separados, llamados "servers".
+Sólo los procesos que realmente lo requieren son los que deberían ejecutar en el kernel space, el resto en user space.
+Los servers se comunican a través de mensajes.
+Diseño modular. Permite fácil reemplazo de subsistemas.
+Cons: El pasaje de mensajes tiene mayor overhead que invocación directa a función. Se producen context-switches de kernels-space a user-space y viceversa.
+
+En consecuencia, todos los sistemas basados en microkernels ahora ejecutan sus servers en el kernel space (Windows NT, Mach)
+
+Linux: Monolítico moderno.
+
+Toma muchas de las buenas ideas de los microkernels:
+	*Diseño modular.
+	*Scheduleable/preemptible.
+	*Soporte para kernel threads.
+	*Modulos Dinámicos en demanda.
+
+No sufre la perdidad de performance asociada al modelo microkernel:
+	*Todo corre en kernel mode.
+	*Las comunicaciones es a través de invocaciones a funciones.
+
+
+Kernels Monolíticos:
+	*Linux
+	*Kernels Unix tradicionales, como los BSDs
+	*Solaris
+
+Microkernels famosos:
+	*Aix (IBM eServers pSeries, utilizando procesadores de la familia IBM POWER de 32 y 64bits)
+	*Minix
+	*Mach, usado en GNU Hurd y Mac OS X entre otros
+	*QNX (real time)
+
+Control Kernel Path: Un camino de control del kernel (KCP) denota una secuencia de instrucciones ejecutadas por el kernel. En el caso más simple, el kernel ejecuta un KCP completo, sin ser interrumpido. Pero hay otros casos.
+
+Algunas formas de sincronizar los KCPs:
+	*Deshabilitación de la capacidad de preemption
+	*Deshabilitación de las interrupciones
+	*Semáforos
+	*Spinlocks
+
+Semáforos: Una variable enterta asociada a la estructura de datos que queremos protejer.
+Una lista de procesos y dos operaciones: down() y up(). Los procesos se floquean y se agregan a la lista cuando la estructura está siendo usada.
+
+Spinlocks: Si la sección crítica es pequeña (se requiere poco tiempo para acceder/modificar el dato) un semáforo puede ser ineficiente.
+Cuando un KCP encuentra el lock tomado, ejecuta un loop cerrado (busy waiting).
+
+El kernel no tiene acceso a librería de C. Está codificado con GNU C.
+Cuando una aplicación de usuario intenta un acceso a memoria ilegal, el kernel maneja la excepción producida, envía SIGSEGV y mata al proceso. 
+
+Las violaciones de memoria del kernel resultan en “oops”. Un “oops” es un error principal en el kernel, que produce un mensaje de error en la consola, hace un dump de los registros y prove éun back trace.
+
+Si el oops ocurre en contexto de interrupción, en la tarea idle (pid 0) o la tarea init (pid 1) se produce un “panic” (caida instantánea del sistema)
+En otros casos, el kernel mata el proceso y trata de continuar ejecutándose, aunque podría quedar en un estado inconsistente
+
+La memoria del kernel no es paginable. Cda byte consumido por el kernel es un byte menos de memoria física disponible.
+
+Pero usar operaciones de punto flotante en el kernel requiere 
+escribir y leer manualmente los registros del FPU (o similar). Por 
+eso la opción utilizada es la más sencilla: NO SE USA PUNTO FLOTANTE EN EL KERNEL
+
+Pero usar operaciones de punto flotante en el kernel requiere 
+escribir y leer manualmente los registros del FPU (o similar). Por 
+eso la opci
+ó
+n utilizada es la m
+á
+s sencilla: NO SE USA PUNTO FLOTANTE EN EL KERNEL

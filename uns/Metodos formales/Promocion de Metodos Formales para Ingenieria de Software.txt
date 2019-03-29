@@ -1,0 +1,6 @@
+Coloquio 2016
+1 - la idea de modelos cheker
+2 - como funcionan lo theorem prover 
+3 - fol y dl describirlas y cntar para q sirve cada una
+4 - teoría de invariante de ciclo y efectos colaterales
+5 fortalezas y debilidades de spin y key , al menos dos de cada una

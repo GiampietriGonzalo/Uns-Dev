@@ -1,0 +1,30 @@
+Conectarse a una red
+
+
+Los pasos a seguir
+
+Usaremos 4 herramientas:
+
+    ifconfig: para habilitar el dispositivo inalámbrico (wireless).
+    iwlist: para listar todos los puntos de acceso detectados.
+    iwconfig: para configurar la conexión inalámbrica.
+    dhclient: para asignarle a nuestra compu una dirección IP a través de DHCP.
+
+	
+	Habilitar el dispositivo inalámbrico :sudo ifconfig wlan0 up
+	Buscar la red inalámbrica a la que queremos conectarnos: iwlist wlan0 scan
+	Configurar nuestra conexión: sudo iwconfig wlan0 essid ESSID key CONTRASEÑA
+	Obtener nuestro IP: sudo dhclient wlan0
+	
+
+
+
+
+Ver disco y particiones	sudo cfdisk
+apagar pc		sudo init 0
+reiniciar pc		sudo reboot
+ingresar al root	sudo su
+Eliminar carpetas	rm -r
+Eliminar archivos	rm
+Escuchar música 	cmus
+

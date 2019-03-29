@@ -1,0 +1,86 @@
+﻿/*
+Importante
+ * En terminos generales, los dos ejercicios deben ser resueltos en la computadora, no obstante esto,
+ la resolucion de algunos incisos (ver detalles enunciado) podra afectuarse en papel.
+
+1 )Considere la definicion de la clase helado contenida en el directorio ClasesEj1, la cual forma parte de un sistema de administracion de una heladeria
+Cada helado se encuntra representado por una instancia de la clase helado y tiene las siguientes caractriticas 
+	*posee una envase que puede o ser de telgopor (atributo telgopor). En caso que no sea de telgopor se coinsidera que el
+	 envase es de cucurucho.
+	*posee un tamaño, el cual es chico o grande, siendo estos mutuamente excluyentes (atributos chico y grande).
+	*posee una cantidad maxima de sabores (atributos maxSabores), la cual se encuntra determinada por el tipo del envase principal 
+	y el tamaño del helado:telgopor y chico = 3, cucurucho y grande = 3 y cucurucho y chico = 2.
+	*Posee una cantidad actual de sabores (atributo cantSabores), la cual no puede superar la cant maxima de sabores del helado.
+	*el usuario puede, en cualquier momento, asignar un tamaño de helado(metodo asignarTamanio).
+	*el usuariopuede , en cualquier momento, establecer o re-establecer la cantidad maximade sabores de helado.(metodo establecerLimiteSabores)
+	*el usuario puede, en cualquier momento, intentar añadir un sabor al helado(metodo agregarSabor).
+	dicha accion es posible si el helado no posee actualmente la cantidad de sabores permitida. En caso contrario, selanza una exepcion del tipo 
+	ExepcionCantSaboresSuperada
+
+
+A)Defina invariantes que capturen las restricciones incluidas en la descripcion brindada para la clase helado. (Decia que es importante Realizarla Primero!!)
+
+B)Utilize Key para verificar la corretitud de los contratos brindados para el metodo AsignarTamanio, considerando la implementacion provista para el mismo. Guarde el 
+  archivo .proof correspondiente a cada prueba original(no cerrada) en un directorio PruebasNoCerradasEj1b. Para cada meta abierta de cada prueba no cerrada, explique 
+  los motivos por lo que no cierra en dicho punto.
+  Obervacion: Al efectuar la explicacion se recomienda hacer referencia al numero de nodo/meta abierta del arbol de prueba en cada caso.
+
+C)Para cada prueba no cerrada del inciso anterior, modifique el correspondiente contrato de manera tal que la prueba cierre. Asimismo defina los contratos
+  adicionales que sea necesarios y realize las pruebas correspondientes para dichos contratos.Guarde el archivo .proof correspondiente a 
+  cada prueba cerrada(incluyendo las de los nuevos contratos) en un directorio PruebasCerradasEj1c.
+
+D)Defina contratos (los mas especificos posibles) para modelar todo comportamiento <Factible> 
+
+e)Utilice key para verificar la corectitud de los contratos definidos en el inciso anterior con respecto
+  a la implementacion del metodo establecerLimiteSabores.Guarde el archivo .proof correspondiente a la prueba
+  <prueba cerrrada de cada contrato> en un direcotorio PruebasCerradasEj1e  
+
+f)Defina contratos(lo mas especificos posibles) para modelar el comportamiento del metodo agregarSabor, 
+  de acuerdo a la descripcion brindada para el mismo.
+
+g)Utilice key para verificar la corectitud de los contratos especificados en el inciso anterior 
+  para el metodo agregar sabo, considerando la implementacion originalmente provista para el mismo.
+  Guarde un .proof correspondinte a cada prueba original(solo aquellas que no cerradas) en un directorio 
+  PruebansNoCerradasEj1g. Para cada meta abierta de cada prueba on cerradaexplique los motivos por los que 
+  la prueba no cierrae en dicho punto. 
+
+ h)para cada prueba del inciso anterior, solucione le problema (logre cerrar todas las pruebas de todos los metodo
+   de los contratos de acuerdo al comportamiento esperado del metodo, segun la especificacion brindada ). Modificando 
+   la implementacion y o los contratos del metodo agregarSabor segun corresponda. Guarde los .proof correspondiente a 
+   cada prueba cerradade cada contrato en un directorio PruebasCerradasEj1h
+
+
+
+ejer  2 ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Una categoria posee un conjunto de de excatamente 5 libros (librosCat), los cuales son instancias de la clase libro
+    * un usuario puede consultar si un libro b pertence a la categoria actual(metodo estaEnCategoria)
+    
+    Cada libro esta representado por una instancia de la clase libro y tiene estas caracteriticas:
+    * un libro puede estar categorizado(atributo TieneCategoria)
+    * un libro posee un conjunto de hasta 3 libros que se encuantran <juanto al el en la estanteria> de la biblioteca
+      (atributo atrosLibrosestanteria), los cuales son instancia de la clase libro.
+    * un usuario puede consultar si el libro esta clasificado bajo alguna categoria(metodo estaCategorizado)
+    * el usuario puede intentar contar las cantidad de libros categorizados del conjunto de otros libros de la estanteria
+      del libro actual(metodo contarotrosCaterorizadosEstanteria).Si el conjuntode otros librosde laestanteria en vacio
+      (su longitud es 0), el metodo lanza una execpcion del tipo ExepcionEstanteriaVacia.Sino, El metodo Retorna
+      un valor correspondiente a la cantidad total de libros de dicho conjuntoque se encuantran categorizados.
+
+
+  A)Defina invariantes ademas de las restricciones en libro y categoria
+  *Un libro no puede estar dentro de su conjunto de otros libros de la estanteria(atributo otrosLibrosEstanteria)
+  *Todo libro pertenece al conjunto de libros de una categoria (atributos librosCat) debe estar categirizado
+
+  B)Defina contratos para estaEnCategira de Categoria.
+
+  C)Ultilice key para verificar loscontratos definidos anteriormente  guarde cada prueba cerrada  en ...PruebasCerradasEj2c.
+
+  D)Defina contratos para estaCategorizado de libro.
+
+  E)Utilize key para verificar la corretitud de los contratos definidos para EstaCategorizado guarde cada .proof 
+  para cada contrato en  PruebasCerradasEj2e
+
+  F)Utilize Key para berificar la correctitud de los contratos ContarOtrosCategoriasEstanteria considerando la 
+    implementacion originalmente dada, guarde los .proof de cada prueba no Cerrada en la carpeta... por cada 
+    meta explique por que no cierra.

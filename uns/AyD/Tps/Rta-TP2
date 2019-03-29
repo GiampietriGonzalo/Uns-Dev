@@ -1,0 +1,18 @@
+
+EJERCICIO 1
+Smell codes:
+
+*Comentarios innecesarios
+*Nombre no representativo para la clase UserLogic
+*No hay implementacion para la interfaz ServiceProvider
+*No se cumple Depedency Inverse principle
+*El método addUser no tiene un nombre apropiado
+*El método addUser es complejo
+
+EJERCICIO 2
+Smell codes:
+
+*comentarios innecesarios
+*No se cumple Depedency Inverse principle, Open/close principle, 
+*Nombres de clases no representativos
+

@@ -1,0 +1,95 @@
+RESPUESTAS COLOQUIO MÉTODOS
+
+EJERCICIO 1
+
+a) ¿Cuál es la principal diferencia semántica entre las aserciones y las expresiones de correctitud expresadas en la cláusula run ?
+
+Las aserciones expresan estas restricciones adicionales que el analizador chequea si se verifican. Si la aserción no se verifica entonces el analizador produce una instancia contraejemplo (que ilustra por qué la propiedad falla).
+En cambio, las expresiones de correctitud expresadas en la cláusula run provocan que el analizador busque instancias que respeten
+esas expresiones, para un scope finito.
+
+b) Explique las alternativas que provee la herramienta para modelar y verificar dinámica. Establezca que
+ventajas y desventajas observa para cada una de ellas.
+
+Dado que los átomos en alloy son estáticos, una transición puede modelarse de 2 maneras:
+
+Solución 1: nuevo átomo
+Una de la estrategias es tener un nuevo átomo que refleja el cambio de estado realizado. De esta manera se captura la noción de cambio.
+La desventaja de esta solución está en que ya el nuevo átomo no se trata del mismo “objeto”, sino de otro que en general es igual al anterior salvo por el efecto esperado de la operación (cambio de estado).
+
+Ventaja: Fácil de implementar. útil en modelos donde se generan pocos átomos.
+Desventajas: Puede generar una gran cantidad de átomos que representa a uno sólo en diferentes estados. El átomo que sufrió la transición ya no es único.
+
+Solución 2: Signatures que establezcam relación entre dos estados
+Otra solución para modelar dinámica en Alloy es, a través de una signatura, establecer una relación entre dos estados de un átomo:
+
+	+El estado anterior a la transición y
+	+El estado siguiente
+
+Ventaja: El átomo que sufrió la transición sigue siendo un único átomo. Asegura que haya un único átomo por cada elemento.
+Desventaja: Difícil de implementar.
+
+c) Remarque las diferencias que nota entre la aproximación adoptada por los desarrolladores de Alloy y la aproximación adoptada por los llamados Model Checkers tradicionales. Indique ventajas y desventajas más significativas de cada aproximación.
+
+A diferencia de los Model Chekers tradicionales, a Alloy se lo considera un "Model Finder" ya que, dada una fórmula lógica, encuentra uno o más modelos para la fórmula. Los Model checkers tradicionales vereifican que un estado particular de la máquina sea un modelo de una fórmula lóica temproal.
+Alloy utiliza  SAT Solver, lo que la convierte en una herramienta mucho más liviana, más expresiva, más rápida y tratable. Adquirir esta solución permite a Alloy tener la condición de "Scope", lo cuál es una limitación en comparación con los Model Checkers tradicionales.
+
+Ventajas de alloy: Alloy permite la definicion de modelos infinitos, donde su Analyzer es capaz de emplear scopes finitos para éstos modelos. 
+A medida que los solvers se vuelven más rápdios, el solucionador de Alloy se vuelve más rápido y se adapta a problemas más grandes
+
+
+d) Explique porque la lógica de primer orden resulta insuficiente para los Model Checkers
+Por la lógica de primer orden es no-decidible
+
+e) Explique que tipo de lógica se utiliza para Alloy. Descríbala
+Alloy utiliza lógica de primer orden con todos los operadores de conjunto( agrega todos los operadores relacionales)
+
+
+EJERCICIO 2
+a) Que es un update para KeY? Explique por qué resulta una pieza esencial a la hora de demostrar que
+un servicio JAVA es correcto
+
+Un update para KeY denota un cambio de estado
+
+
+b) Explique qué tipo de lógica se utiliza para realizar las pruebas en Key. Descríbala
+
+KeY usa lógica dinámica 
+
+c) ¿Se utiliza la misma lógica para realizar la especificación? Justifique
+No, resulta muy complejo realizar la especificacion de un programa en lógica de primer orden y en lógica dinámica. Lo que se hace es especificar el programa en JML y luego KeY realiza una traducción automática de JML a Cálculo de secuentes.
+
+d) Explique de que manera se provee la especificación para realizar pruebas de correctitud de
+programas en Key
+
+La especificación se provee en forma de contratos en notación JML(Java Model Language) dentro de un archivo .java
+
+
+
+
+public int x;
+pulic int y;
+
+/*@ public normal_behavior
+  @ requires true;
+  @ ensures \result >= 0
+  @*/
+
+public int method(){
+	
+	int x1=x, q=0;
+	/*@ loop_invariant
+	  @ (x1>=y && q>=0;	&&
+	  @ (x1<y && q>=0)
+	  @ assignable x1,q;
+	  @ decreasing x1-y; //Determina correctitud total
+	  @*/
+
+	while(x1>=y){
+		x1 = x1 - y;
+		q = q + 1;
+	}
+
+	return q;
+}
+
